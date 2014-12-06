@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="src/eclipse_plugins/|src/eclipseplugins/actions/" kind="src" path=""/>
+	<classpathentry kind="src" path="src/eclipse_plugins"/>
+	<classpathentry kind="src" path="src/eclipseplugins/actions"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="/Users/Tanl/Documents/Programming/eclipse/eclipse/plugins/org.eclipse.ui_3.104.0.v20121024-145224.jar"/>
+	<classpathentry kind="lib" path="/Users/Tanl/Documents/Programming/eclipse/eclipse/plugins/org.eclipse.mylyn.commons.workbench_3.8.3.v20130107-0100.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
