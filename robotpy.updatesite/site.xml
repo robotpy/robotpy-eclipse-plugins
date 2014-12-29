@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/io.github.robotpy.plugins.robotpy.feature_0.1.0.qualifier.jar" id="io.github.robotpy.plugins.robotpy.feature" version="0.1.0.qualifier">
+      <category name="io.github.robotpy.plugins"/>
+   </feature>
+   <category-def name="io.github.robotpy.plugins" label="RobotPy Robot Development">
+      <description>
+         Core RobotPy Robot Development Tools.
+      </description>
+   </category-def>
+</site>
