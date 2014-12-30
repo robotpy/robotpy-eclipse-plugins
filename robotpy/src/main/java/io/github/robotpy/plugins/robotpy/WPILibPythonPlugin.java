@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java;
+package io.github.robotpy.plugins.robotpy;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,23 +19,23 @@ import org.osgi.framework.BundleContext;
 
 import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import edu.wpi.first.wpilib.plugins.core.ant.AntPropertiesParser;
-import edu.wpi.first.wpilib.plugins.java.installer.JavaInstaller;
+import io.github.robotpy.plugins.robotpy.installer.SimInstaller;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class WPILibJavaPlugin extends AbstractUIPlugin implements IStartup {
+public class WPILibPythonPlugin extends AbstractUIPlugin implements IStartup {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "WPILib_Java_Robot_Development"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "io.github.robotpy.plugins.robotpy"; //$NON-NLS-1$
 
 	// The shared instance
-	private static WPILibJavaPlugin plugin;
+	private static WPILibPythonPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public WPILibJavaPlugin() {
+	public WPILibPythonPlugin() {
 	}
 
 	/*
@@ -61,39 +61,26 @@ public class WPILibJavaPlugin extends AbstractUIPlugin implements IStartup {
 	 *
 	 * @return the shared instance
 	 */
-	public static WPILibJavaPlugin getDefault() {
+	public static WPILibPythonPlugin getDefault() {
 		return plugin;
 	}
 
 	public String getCurrentVersion() {
 		try {
-			Properties props = new AntPropertiesParser(WPILibJavaPlugin.class.getResourceAsStream("/resources/configuration.properties")).getProperties();
+			Properties props = new AntPropertiesParser(WPILibPythonPlugin.class.getResourceAsStream("/resources/configuration.properties")).getProperties();
 			if (props.getProperty("version").startsWith("$")) {
 				return "DEVELOPMENT";
 			} else {
 				return props.getProperty("version");
 			}
 		} catch (CoreException e) {
-            WPILibJavaPlugin.logError("Error getting properties.", e);
+            WPILibPythonPlugin.logError("Error getting properties.", e);
 			return "DEVELOPMENT";
 		}
 	}
-	public String getJavaPath() {
+	public String getSimPath() {
 		return WPILibCore.getDefault().getWPILibBaseDir()
-				+ File.separator + "java" + File.separator + "current";
-	}
-
-	public Properties getProjectProperties(IProject project) {
-		Properties defaults = WPILibCore.getDefault().getProjectProperties(project);
-		Properties props;
-		try {
-			File file = new File(WPILibCore.getDefault().getWPILibBaseDir()+"/java/current/ant/build.properties");
-			props = new AntPropertiesParser(new FileInputStream(file)).getProperties(defaults);
-		} catch (Exception e) {
-            WPILibJavaPlugin.logError("Error getting properties.", e);
-			props = new Properties(defaults);
-		}
-		return props;
+				+ File.separator + "sim" + File.separator + "current";
 	}
 	
 	public void updateProjects() {
@@ -106,18 +93,19 @@ public class WPILibJavaPlugin extends AbstractUIPlugin implements IStartup {
 	    for (IProject project : projects) {
 			  try {
 				  if(project.hasNature("edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature")){
-					WPILibJavaPlugin.logInfo("Updating project");
+					WPILibPythonPlugin.logInfo("Updating project");
 					updateVariables(project);
 				  } else {
 				  }
 			  } catch (CoreException e) {
-				WPILibJavaPlugin.logError("Error updating projects.", e);
+				WPILibPythonPlugin.logError("Error updating projects.", e);
 			  }
 	    }
 	}
 	
 	public void updateVariables(IProject project) throws CoreException {
-		Properties props = WPILibJavaPlugin.getDefault().getProjectProperties(project);
+		// right now we don't need to do anything like this in RobotPy.. but you never know
+		/*Properties props = WPILibPythonPlugin.getDefault().getProjectProperties(project);
 
 		try {
 			JavaCore.setClasspathVariable("wpilib", new Path(props.getProperty("wpilib.jar")), null);
@@ -126,13 +114,14 @@ public class WPILibJavaPlugin extends AbstractUIPlugin implements IStartup {
 			JavaCore.setClasspathVariable("networktables.sources", new Path(props.getProperty("networktables.sources")), null);
 		} catch (JavaModelException e) {
             // Classpath variables didn't get set
-            WPILibJavaPlugin.logError("Error setting classpath..", e);
+            WPILibPythonPlugin.logError("Error setting classpath..", e);
 		}
+		*/
 	}
 
 	@Override
 	public void earlyStartup() {
-		new JavaInstaller(getCurrentVersion()).installIfNecessary();
+		new SimInstaller(getCurrentVersion()).installIfNecessary();
 	}
 
 	public static void logInfo(String msg) {

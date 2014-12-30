@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.examples;
+package io.github.robotpy.plugins.robotpy.wizards.examples;
 
 import java.net.URL;
 import java.util.List;
@@ -14,16 +14,16 @@ import edu.wpi.first.wpilib.plugins.core.wizards.INewProjectInfo;
 import edu.wpi.first.wpilib.plugins.core.wizards.IExampleProject.ExportFile;
 import edu.wpi.first.wpilib.plugins.core.wizards.NewProjectMainPage;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectCreationUtils;
-import edu.wpi.first.wpilib.plugins.java.WPILibJavaPlugin;
-import edu.wpi.first.wpilib.plugins.java.wizards.newproject.WPIRobotJavaProjectCreator;
+import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
+import io.github.robotpy.plugins.robotpy.wizards.newproject.WPIRobotRobotpyProjectCreator;
 
-public class ExampleJavaWizard extends ExampleWizard {
+public class ExampleRobotpyWizard extends ExampleWizard {
 	private NewProjectMainPage detailsPage;
 
 	/**
 	 * Constructor for SampleNewWizard.
 	 */
-	public ExampleJavaWizard() {
+	public ExampleRobotpyWizard() {
 		super();
 		setNeedsProgressMonitor(true);
 	}
@@ -37,14 +37,14 @@ public class ExampleJavaWizard extends ExampleWizard {
 		final String projectName = detailsPage.getProjectName();
 		final String packageName = detailsPage.getPackage();
 		final String worldName = detailsPage.getWorld();
-		ProjectCreationUtils.createProject(new WPIRobotJavaProjectCreator(projectName, packageName, ex, worldName));
+		ProjectCreationUtils.createProject(new WPIRobotRobotpyProjectCreator(projectName, packageName, ex, worldName));
 	}
 
 	@Override
 	protected IWizardPage getDetailsPage(INewProjectInfo info) {
 		if (detailsPage != null) return detailsPage;
 		detailsPage = new NewProjectMainPage(selection, getTeamNumberPage(), info);
-		detailsPage.setTitle("Create Example Robot Java Project");
+		detailsPage.setTitle("Create Example Robot Python Project");
 		detailsPage.setDescription("This wizard creates a new example project based on your selection.");
 		return detailsPage;
 	}
@@ -52,12 +52,12 @@ public class ExampleJavaWizard extends ExampleWizard {
 	@Override
 	public IExampleProject makeExampleProject(String name, String description,
 			List<String> tags, String world, List<String> folders, List<ExportFile> files) {
-		return new ExampleJavaProject(name, description, tags, world, folders, files);
+		return new ExampleRobotpyProject(name, description, tags, world, folders, files);
 	}
 
 	@Override
 	public URL getResourceURL() {
-		return WPILibJavaPlugin.getDefault().getBundle().getEntry("/resources/templates/examples");
+		return WPILibPythonPlugin.getDefault().getBundle().getEntry("/resources/templates/examples");
 	}
 
 	@Override

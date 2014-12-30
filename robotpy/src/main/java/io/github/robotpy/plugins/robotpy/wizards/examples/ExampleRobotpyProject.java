@@ -1,18 +1,18 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.examples;
+package io.github.robotpy.plugins.robotpy.wizards.examples;
 
 import java.util.List;
 import java.util.Map;
 
 import edu.wpi.first.wpilib.plugins.core.wizards.IExampleProject;
-import edu.wpi.first.wpilib.plugins.java.wizards.newproject.JavaProjectType;
+import io.github.robotpy.plugins.robotpy.wizards.newproject.RobotpyProjectType;
 
-public class ExampleJavaProject extends JavaProjectType implements IExampleProject {
+public class ExampleRobotpyProject extends RobotpyProjectType implements IExampleProject {
 	private String name, description, world;
 	private List<String> tags;
 	private List<String> packages;
 	private List<ExportFile> files;
 	
-	public ExampleJavaProject(String name, String description, List<String> tags, 
+	public ExampleRobotpyProject(String name, String description, List<String> tags, 
 			String world, List<String> packages, List<ExportFile> files) {
 		this.name = name;
 		this.description = description;

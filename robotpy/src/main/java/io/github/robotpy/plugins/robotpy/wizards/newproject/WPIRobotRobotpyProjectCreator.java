@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.newproject;
+package io.github.robotpy.plugins.robotpy.wizards.newproject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,18 +7,18 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jdt.core.JavaCore;
+import org.python.pydev.plugin.nature.PythonNature;
 
 import edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature;
 import edu.wpi.first.wpilib.plugins.core.wizards.IProjectCreator;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectType;
-import edu.wpi.first.wpilib.plugins.java.WPILibJavaPlugin;
+import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 
-public class WPIRobotJavaProjectCreator implements IProjectCreator {
+public class WPIRobotRobotpyProjectCreator implements IProjectCreator {
 	String projectName, packageName, worldName;
 	ProjectType projectType;
 	
-	public WPIRobotJavaProjectCreator(String projectName, String packageName, ProjectType projectType, String worldName) {
+	public WPIRobotRobotpyProjectCreator(String projectName, String packageName, ProjectType projectType, String worldName) {
 		this.projectName = projectName;
 		this.packageName = packageName;
 		this.projectType = projectType;
@@ -47,7 +47,7 @@ public class WPIRobotJavaProjectCreator implements IProjectCreator {
 	@Override
 	public List<String> getNatures() {
 		List<String> natures = new ArrayList<>();
-		natures.add(JavaCore.NATURE_ID);
+		natures.add(PythonNature.PYTHON_NATURE_ID);
 		natures.add(FRCProjectNature.FRC_PROJECT_NATURE);
 		return natures;
 	}
@@ -64,6 +64,6 @@ public class WPIRobotJavaProjectCreator implements IProjectCreator {
 
 	@Override
 	public void finalize(IProject project) throws CoreException {
-		WPILibJavaPlugin.getDefault().updateVariables(project);
+		WPILibPythonPlugin.getDefault().updateVariables(project);
 	}
 }

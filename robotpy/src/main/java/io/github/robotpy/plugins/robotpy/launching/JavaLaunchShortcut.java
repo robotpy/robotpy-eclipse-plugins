@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.launching;
+package io.github.robotpy.plugins.robotpy.launching;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -32,7 +32,7 @@ import com.sun.jdi.connect.Connector.Argument;
 
 import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import edu.wpi.first.wpilib.plugins.core.launching.AntLauncher;
-import edu.wpi.first.wpilib.plugins.java.WPILibJavaPlugin;
+import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 
 @SuppressWarnings("restriction")
 public abstract class JavaLaunchShortcut implements ILaunchShortcut {
@@ -63,7 +63,7 @@ public abstract class JavaLaunchShortcut implements ILaunchShortcut {
 		} else if(sel.getFirstElement() instanceof IJavaElement) {
 			activeProject = ((IJavaElement)sel.getFirstElement()).getJavaProject().getProject();
 		} else {
-			WPILibJavaPlugin.logError("Selection isn't a project: "+sel.toString(), null);
+			WPILibPythonPlugin.logError("Selection isn't a project: "+sel.toString(), null);
 			return;
 		}
         
@@ -82,7 +82,7 @@ public abstract class JavaLaunchShortcut implements ILaunchShortcut {
 		    // If editor existed, run config using extracted resource in indicated mode
 		    runConfig(activeProject, mode);
 		} else {
-			WPILibJavaPlugin.logError("Editor was null.", null);
+			WPILibPythonPlugin.logError("Editor was null.", null);
 		}
 
 	}
@@ -117,7 +117,7 @@ public abstract class JavaLaunchShortcut implements ILaunchShortcut {
 		}
 		
 		if((lastDeploy != null)&&(!lastDeploy.isTerminated())){
-			WPILibJavaPlugin.logInfo("Last deploy running");
+			WPILibPythonPlugin.logInfo("Last deploy running");
 			//Find the server connection thread and kill it
 			Vector<ThreadGroup> threadGroups = new Vector<ThreadGroup>();
 	        ThreadGroup root = Thread.currentThread().getThreadGroup().getParent();
@@ -138,26 +138,26 @@ public abstract class JavaLaunchShortcut implements ILaunchShortcut {
             				lastDeploy.terminate();
             				break;
             			}  catch(Exception e) {
-                            WPILibJavaPlugin.logError("Error stopping ant", e);
+                            WPILibPythonPlugin.logError("Error stopping ant", e);
                         }
             		}
             	}
             }
             
-            WPILibJavaPlugin.logInfo("Waiting");
+            WPILibPythonPlugin.logInfo("Waiting");
             try{wait(1000);}catch(Exception e){}
                
 		}
 		
-		WPILibJavaPlugin.logInfo("Running ant file: " + activeProj.getLocation().toOSString() + File.separator + "build.xml");
-		WPILibJavaPlugin.logInfo("Targets: " + targets + ", Mode: " + mode);
+		WPILibPythonPlugin.logInfo("Running ant file: " + activeProj.getLocation().toOSString() + File.separator + "build.xml");
+		WPILibPythonPlugin.logInfo("Targets: " + targets + ", Mode: " + mode);
 		lastDeploy = AntLauncher.runAntFile(new File (activeProj.getLocation().toOSString() + File.separator + "build.xml"), targets, null, mode);
 		
 		if((mode.equals(ILaunchManager.DEBUG_MODE))&&(getLaunchType().equals(DEPLOY_TYPE))) {
 			try {
 				startDebugConfig(getRemoteDebugConfig(activeProj));
 			} catch (CoreException | InterruptedException e) {
-                WPILibJavaPlugin.logError("Debug attach failed", e);
+                WPILibPythonPlugin.logError("Debug attach failed", e);
 			}
 		}
 		
@@ -178,7 +178,7 @@ public abstract class JavaLaunchShortcut implements ILaunchShortcut {
 		Map<String, String> argMap = new HashMap<String, String>(def.size());
 		argMap.put("hostname", getHostname(activeProj));
 		argMap.put("port", "8348");
-		WPILibJavaPlugin.logInfo(argMap.toString());
+		WPILibPythonPlugin.logInfo(argMap.toString());
 		config.setAttribute(IJavaLaunchConfigurationConstants.ATTR_CONNECT_MAP, argMap);
 		return config;
 	}
@@ -194,16 +194,16 @@ public abstract class JavaLaunchShortcut implements ILaunchShortcut {
 		// Retry until success or rethrow of exception on failure
 		while (true) {
 			try {
-				WPILibJavaPlugin.logInfo("Attemping to attach debugger...");
+				WPILibPythonPlugin.logInfo("Attemping to attach debugger...");
 				config.launch(ILaunchManager.DEBUG_MODE, null);
-				WPILibJavaPlugin.logInfo("Debugger attached.");
+				WPILibPythonPlugin.logInfo("Debugger attached.");
 				break;
 			} catch (CoreException e) {
 				if (--remainingAttempts > 0) {
 					String errorMsg = MessageFormat.format("Unable to attach debugger. "
 							+ "{0} attempts remain - waiting {1} second(s) before retrying...", 
 							remainingAttempts, DEBUG_ATTACH_RETRY_DELAY_SEC);
-					WPILibJavaPlugin.logError(errorMsg, null);
+					WPILibPythonPlugin.logError(errorMsg, null);
 					Thread.sleep(DEBUG_ATTACH_RETRY_DELAY_SEC * 1000);
 				} else {
 					throw e;

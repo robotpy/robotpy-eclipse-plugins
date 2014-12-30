@@ -8,9 +8,9 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>io.github.robotpy.plugins.robotpy</module>
-    <module>io.github.robotpy.plugins.robotpy.feature</module>
-    <module>io.github.robotpy.plugins.updatesite</module>
+    <module>robotpy</module>
+    <module>robotpy.feature</module>
+    <module>robotpy.updatesite</module>
   </modules>
   
   <properties>
@@ -22,11 +22,21 @@
       <id>juno</id>
       <layout>p2</layout>
       <url>http://download.eclipse.org/releases/luna</url>
-    </repository><!--
+    </repository>
+    <repository>
+      <id>pydev</id>
+      <layout>p2</layout>
+      <url>http://pydev.org/updates</url>
+    </repository>
+    <repository>
+      <id>FRC Eclipse Plugins</id>
+      <layout>p2</layout>
+      <url>http://first.wpi.edu/FRC/roborio/release/eclipse/</url>
+    </repository>
     <repository>
       <id>FRC Binaries</id>
       <url>http://first.wpi.edu/FRC/c/maven/</url>
-    </repository> -->
+    </repository>
   </repositories>
   
   <build>

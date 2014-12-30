@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="io.github.robotpy.plugins.java.feature"
-      label="Robot Java Development"
+      id="io.github.robotpy.plugins.robotpy.feature"
+      label="Robot Python Development"
       version="0.1.0.qualifier"
       provider-name="Worcester Polytechnic Institute">
 
@@ -47,7 +47,7 @@
    </license>
 
    <includes
-         id="edu.wpi.first.wpilib.plugins.feature"
+         id="edu.wpi.first.wpilib.plugins.core.feature"
          version="0.0.0"/>
 
    <plugin

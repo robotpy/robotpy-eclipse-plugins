@@ -5,75 +5,75 @@
          point="org.eclipse.ui.newWizards">
       <category
             name="WPILib Robot Java Development"
-            id="io.github.robotpy.plugins.java">
+            id="io.github.robotpy.plugins.robotpy">
       </category>
       <wizard
-            category="io.github.robotpy.plugins.java"
-            class="io.github.robotpy.plugins.java.wizards.newproject.NewJavaWizard"
+            category="io.github.robotpy.plugins.robotpy"
+            class="io.github.robotpy.plugins.robotpy.wizards.newproject.NewRobotpyWizard"
             icon="resources/icons/wpi.ico"
-            id="io.github.robotpy.plugins.java.wizards.newproject.NewJavaWizard"
+            id="io.github.robotpy.plugins.robotpy.wizards.newproject.NewJavaWizard"
             name="Robot Java Project"
             project="true">
       </wizard>
       <wizard
-            category="io.github.robotpy.plugins.java"
-            class="io.github.robotpy.plugins.java.wizards.examples.ExampleJavaWizard"
+            category="io.github.robotpy.plugins.robotpy"
+            class="io.github.robotpy.plugins.robotpy.wizards.examples.ExampleRobotpyWizard"
             icon="resources/icons/wpi.ico"
-            id="io.github.robotpy.plugins.java.wizards.examples.ExampleWizard"
+            id="io.github.robotpy.plugins.robotpy.wizards.examples.ExampleWizard"
             name="Example Robot Java Project"
             project="true">
       </wizard>
       <wizard
-            category="io.github.robotpy.plugins.java"
-            class="io.github.robotpy.plugins.java.wizards.file_template.CommandWizard"
+            category="io.github.robotpy.plugins.robotpy"
+            class="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandWizard"
             icon="resources/icons/Command.png"
-            id="io.github.robotpy.plugins.java.wizards.file_template.CommandWizard"
+            id="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandWizard"
             name="Command">
       </wizard>
       <wizard
-            category="io.github.robotpy.plugins.java"
-            class="io.github.robotpy.plugins.java.wizards.file_template.CommandGroupWizard"
+            category="io.github.robotpy.plugins.robotpy"
+            class="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandGroupWizard"
             icon="resources/icons/CommandGroup.png"
-            id="io.github.robotpy.plugins.java.wizards.file_template.CommandGroupWizard"
+            id="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandGroupWizard"
             name="CommandGroup">
       </wizard>
       <wizard
-            category="io.github.robotpy.plugins.java"
-            class="io.github.robotpy.plugins.java.wizards.file_template.SubsystemWizard"
+            category="io.github.robotpy.plugins.robotpy"
+            class="io.github.robotpy.plugins.robotpy.wizards.file_template.SubsystemWizard"
             icon="resources/icons/Subsystem.png"
-            id="io.github.robotpy.plugins.java.wizards.file_template.SubsystemWizard"
+            id="io.github.robotpy.plugins.robotpy.wizards.file_template.SubsystemWizard"
             name="Subsytem">
       </wizard>
       <wizard
-            category="io.github.robotpy.plugins.java"
-            class="io.github.robotpy.plugins.java.wizards.file_template.PIDSubsystemWizard"
+            category="io.github.robotpy.plugins.robotpy"
+            class="io.github.robotpy.plugins.robotpy.wizards.file_template.PIDSubsystemWizard"
             icon="resources/icons/PIDSubsystem.png"
-            id="io.github.robotpy.plugins.java.wizards.file_template.PIDSubsystemWizard"
+            id="io.github.robotpy.plugins.robotpy.wizards.file_template.PIDSubsystemWizard"
             name="PIDSubsystem">
       </wizard>
       <wizard
-            category="io.github.robotpy.plugins.java"
-            class="io.github.robotpy.plugins.java.wizards.file_template.TriggerWizard"
+            category="io.github.robotpy.plugins.robotpy"
+            class="io.github.robotpy.plugins.robotpy.wizards.file_template.TriggerWizard"
             icon="resources/icons/Button.png"
-            id="io.github.robotpy.plugins.java.wizards.file_template.TriggerWizard"
+            id="io.github.robotpy.plugins.robotpy.wizards.file_template.TriggerWizard"
             name="Trigger">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <commonWizard
-            menuGroupId="io.github.robotpy.plugins.java"
+            menuGroupId="io.github.robotpy.plugins.robotpy"
             type="new"
-            wizardId="io.github.robotpy.plugins.java.wizards.file_template.CommandWizard">
+            wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandWizard">
          <enablement>
       	   <with variable="selection"><iterate>
                <and>
                     <test
-                        args="io.github.robotpy.plugins.core.nature.FRCProjectNature"
+                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                     <test
-						args="org.eclipse.jdt.core.javanature"
+						args="org.python.pydev.pythonNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                 </and>
@@ -81,18 +81,18 @@
          </enablement>
       </commonWizard>
       <commonWizard
-            menuGroupId="io.github.robotpy.plugins.java"
+            menuGroupId="io.github.robotpy.plugins.robotpy"
             type="new"
-            wizardId="io.github.robotpy.plugins.java.wizards.file_template.CommandGroupWizard">
+            wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandGroupWizard">
          <enablement>
       	   <with variable="selection"><iterate>
                <and>
                     <test
-                        args="io.github.robotpy.plugins.core.nature.FRCProjectNature"
+                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                     <test
-						args="org.eclipse.jdt.core.javanature"
+						args="org.python.pydev.pythonNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                 </and>
@@ -100,18 +100,18 @@
          </enablement>
       </commonWizard>
       <commonWizard
-            menuGroupId="io.github.robotpy.plugins.java"
+            menuGroupId="io.github.robotpy.plugins.robotpy"
             type="new"
-            wizardId="io.github.robotpy.plugins.java.wizards.file_template.SubsystemWizard">
+            wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.SubsystemWizard">
          <enablement>
       	   <with variable="selection"><iterate>
                <and>
                     <test
-                        args="io.github.robotpy.plugins.core.nature.FRCProjectNature"
+                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                     <test
-						args="org.eclipse.jdt.core.javanature"
+						args="org.python.pydev.pythonNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                 </and>
@@ -119,18 +119,18 @@
          </enablement>
       </commonWizard>
       <commonWizard
-            menuGroupId="io.github.robotpy.plugins.java"
+            menuGroupId="io.github.robotpy.plugins.robotpy"
             type="new"
-            wizardId="io.github.robotpy.plugins.java.wizards.file_template.PIDSubsystemWizard">
+            wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.PIDSubsystemWizard">
          <enablement>
       	   <with variable="selection"><iterate>
                <and>
                     <test
-                        args="io.github.robotpy.plugins.core.nature.FRCProjectNature"
+                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                     <test
-						args="org.eclipse.jdt.core.javanature"
+						args="org.python.pydev.pythonNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                 </and>
@@ -138,18 +138,18 @@
          </enablement>
       </commonWizard>
       <commonWizard
-            menuGroupId="io.github.robotpy.plugins.java"
+            menuGroupId="io.github.robotpy.plugins.robotpy"
             type="new"
-            wizardId="io.github.robotpy.plugins.java.wizards.file_template.TriggerWizard">
+            wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.TriggerWizard">
          <enablement>
       	   <with variable="selection"><iterate>
                <and>
                     <test
-                        args="io.github.robotpy.plugins.core.nature.FRCProjectNature"
+                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                     <test
-						args="org.eclipse.jdt.core.javanature"
+						args="org.python.pydev.pythonNature"
                         property="org.eclipse.jdt.launching.hasProjectNature">
                     </test>
                 </and>
@@ -160,16 +160,16 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="io.github.robotpy.plugins.java.preferences.PreferenceInitializer">
+            class="io.github.robotpy.plugins.robotpy.preferences.PreferenceInitializer">
       </initializer>
    </extension>
    <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
-            class="io.github.robotpy.plugins.java.launching.DeployLaunchShortcut"
+            class="io.github.robotpy.plugins.robotpy.launching.DeployLaunchShortcut"
             description="Deploy the WPILib project to the roboRIO"
             icon="resources/icons/wpi.ico"
-            id="io.github.robotpy.plugins.java.launching.deploy"
+            id="io.github.robotpy.plugins.robotpy.launching.deploy"
             label="WPILib Java Deploy"
             modes="run,debug">
             <contextualLaunch>
@@ -179,11 +179,11 @@
                   <iterate>
                      <and>
                         <test
-                            args="io.github.robotpy.plugins.core.nature.FRCProjectNature"
+                            args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
                             property="org.eclipse.jdt.launching.hasProjectNature">
                         </test>
                         <test
-                            args="org.eclipse.jdt.core.javanature"
+                            args="org.python.pydev.pythonNature"
                             property="org.eclipse.jdt.launching.hasProjectNature">
                         </test>
                      </and>
@@ -201,10 +201,10 @@
          </description>
       </shortcut>
       <shortcut
-            class="io.github.robotpy.plugins.java.launching.SimulateLaunchShortcut"
+            class="io.github.robotpy.plugins.robotpy.launching.SimulateLaunchShortcut"
             description="Test your WPILib program with the Gazebo simulator."
             icon="resources/icons/Gazebo.png"
-            id="io.github.robotpy.plugins.java.launching.simulate"
+            id="io.github.robotpy.plugins.robotpy.launching.simulate"
             label="WPILib Java Simulation"
             modes="run,debug">
             <contextualLaunch>
@@ -214,11 +214,11 @@
                   <iterate>
                      <and>
                         <test
-                            args="io.github.robotpy.plugins.core.nature.FRCProjectNature"
+                            args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
                             property="org.eclipse.jdt.launching.hasProjectNature">
                         </test>
                         <test
-                            args="org.eclipse.jdt.core.javanature"
+                            args="org.python.pydev.pythonNature"
                             property="org.eclipse.jdt.launching.hasProjectNature">
                         </test>
                      </and>
@@ -239,7 +239,7 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="io.github.robotpy.plugins.java.WPILibJavaPlugin">
+            class="io.github.robotpy.plugins.robotpy.WPILibPythonPlugin">
       </startup>
    </extension>
 </plugin>

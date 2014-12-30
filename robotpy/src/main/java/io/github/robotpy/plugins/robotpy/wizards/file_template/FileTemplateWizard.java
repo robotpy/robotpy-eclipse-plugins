@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.file_template;
+package io.github.robotpy.plugins.robotpy.wizards.file_template;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectCreationUtils;
-import edu.wpi.first.wpilib.plugins.java.WPILibJavaPlugin;
+import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 
 public class FileTemplateWizard extends Wizard implements INewWizard {
 	private String type, source, ending;
@@ -61,7 +61,7 @@ public class FileTemplateWizard extends Wizard implements INewWizard {
 		final IProject project = page.getProject();
 		final String className = page.getClassName();
 		final String packageName = page.getPackage();
-		WPILibJavaPlugin.logInfo("Class: "+className+" Package: "+packageName);
+		WPILibPythonPlugin.logInfo("Class: "+className+" Package: "+packageName);
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException {
 				try {
@@ -96,10 +96,10 @@ public class FileTemplateWizard extends Wizard implements INewWizard {
 		map.put("$package", packageName);
 		String filepath = "src/"+packageName.replace(".", "/")+"/"+className+".java";
 		try {
-			URL url = new URL(WPILibJavaPlugin.getDefault().getBundle().getEntry("/resources/templates/"), source);
+			URL url = new URL(WPILibPythonPlugin.getDefault().getBundle().getEntry("/resources/templates/"), source);
 			ProjectCreationUtils.createTemplateFile(project, filepath, url, map);
 		} catch (MalformedURLException e) {
-            WPILibJavaPlugin.logError("Error finishing making file: "+className, e);
+            WPILibPythonPlugin.logError("Error finishing making file: "+className, e);
 		}
 	}
 
@@ -110,9 +110,9 @@ public class FileTemplateWizard extends Wizard implements INewWizard {
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.selection = selection;
-		WPILibJavaPlugin.logInfo(selection.toString());
+		WPILibPythonPlugin.logInfo(selection.toString());
 		Object element = ((StructuredSelection) selection).getFirstElement();
-		if (element != null) WPILibJavaPlugin.logInfo(element.getClass().toString());
+		if (element != null) WPILibPythonPlugin.logInfo(element.getClass().toString());
 		if (element instanceof IResource) {
 			project = ((IResource) element).getProject();
 		} else if (element instanceof IPackageFragment) {
@@ -121,6 +121,6 @@ public class FileTemplateWizard extends Wizard implements INewWizard {
 			project = ((IPackageFragmentRoot) element).getJavaProject().getProject();
 		} else if (element instanceof ICompilationUnit) {
 			project = ((ICompilationUnit) element).getJavaProject().getProject();
-		} else WPILibJavaPlugin.logInfo("Element not instance of IResource");
+		} else WPILibPythonPlugin.logInfo("Element not instance of IResource");
 	}
 }

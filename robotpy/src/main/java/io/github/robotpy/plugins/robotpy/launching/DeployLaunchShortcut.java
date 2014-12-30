@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.launching;
+package io.github.robotpy.plugins.robotpy.launching;
 
 import org.eclipse.core.resources.IProject;
 

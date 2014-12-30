@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.newproject;
+package io.github.robotpy.plugins.robotpy.wizards.newproject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
@@ -20,7 +20,7 @@ import edu.wpi.first.wpilib.plugins.core.wizards.NewProjectMainPage;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectCreationUtils;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectType;
 import edu.wpi.first.wpilib.plugins.core.wizards.TeamNumberPage;
-import edu.wpi.first.wpilib.plugins.java.WPILibJavaPlugin;
+import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 
 /**
  * 
@@ -35,7 +35,7 @@ import edu.wpi.first.wpilib.plugins.java.WPILibJavaPlugin;
  * be able to open it.
  */
 
-public class NewJavaWizard extends Wizard implements INewWizard {
+public class NewRobotpyWizard extends Wizard implements INewWizard {
 	private TeamNumberPage teamNumberPage;
 	private NewProjectMainPage page;
 	private ISelection selection;
@@ -43,7 +43,7 @@ public class NewJavaWizard extends Wizard implements INewWizard {
 	/**
 	 * Constructor for SampleNewWizard.
 	 */
-	public NewJavaWizard() {
+	public NewRobotpyWizard() {
 		super();
 		setNeedsProgressMonitor(true);
 	}
@@ -53,14 +53,11 @@ public class NewJavaWizard extends Wizard implements INewWizard {
 	 */
 
 	public void addPages() {
-		if (TeamNumberPage.needsTeamNumberPage()) {
-			teamNumberPage = new TeamNumberPage(selection);
-			addPage(teamNumberPage);
-		}
 		page = new NewProjectMainPage(selection, teamNumberPage, INewProjectInfo.Null);
-		page.setProjectTypes(JavaProjectType.TYPES);
-		page.setTitle("Create New Robot Java Project");
-		page.setDescription("This wizard creates a new Robot Java Project configured to use WPILib for programming FRC robots.");
+		page.setProjectTypes(RobotpyProjectType.TYPES);
+		page.setTitle("Create New Robot Python Project");
+		page.setDescription("This wizard creates a new Robot Python Project configured to use WPILib for programming FRC robots.");
+		page.setShowPackage(false);
 		addPage(page);
 	}
 
@@ -75,7 +72,7 @@ public class NewJavaWizard extends Wizard implements INewWizard {
 		final String packageName = page.getPackage();
 		final ProjectType projectType = page.getProjectType();
 		final String worldName = page.getWorld();
-		WPILibJavaPlugin.logInfo("Project: "+projectName+" Package: "+packageName+" Project Type: "+projectType);
+		WPILibPythonPlugin.logInfo("Project: "+projectName+" Package: "+packageName+" Project Type: "+projectType);
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException {
 				try {
@@ -109,7 +106,7 @@ public class NewJavaWizard extends Wizard implements INewWizard {
     	Properties props = WPILibCore.getDefault().getProjectProperties(null);
     	props.setProperty("team-number", teamNumber);
     	WPILibCore.getDefault().saveGlobalProperties(props);
-		ProjectCreationUtils.createProject(new WPIRobotJavaProjectCreator(projectName, packageName, projectType, worldName));
+		ProjectCreationUtils.createProject(new WPIRobotRobotpyProjectCreator(projectName, packageName, projectType, worldName));
 	}
 
 	/**

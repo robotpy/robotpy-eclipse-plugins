@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.file_template;
+package io.github.robotpy.plugins.robotpy.wizards.file_template;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Text;
 import edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature;
 import edu.wpi.first.wpilib.plugins.core.wizards.IProjectFilter;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectComboField;
-import edu.wpi.first.wpilib.plugins.java.WPILibJavaPlugin;
+import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 
 /**
  * The "New" wizard page allows setting the container for the new file as well
@@ -71,7 +71,7 @@ public class FileTemplateWizardMainPage extends WizardPage {
 							return project.hasNature(FRCProjectNature.FRC_PROJECT_NATURE)
 									&& project.hasNature(JavaCore.NATURE_ID);
 						} catch (CoreException e) {
-                            WPILibJavaPlugin.logError("Error looking for FRCJava project.", e);
+                            WPILibPythonPlugin.logError("Error looking for FRCJava project.", e);
 							return false;
 						}
 					}
@@ -127,7 +127,7 @@ public class FileTemplateWizardMainPage extends WizardPage {
 	 */
 
 	private void initialize() {
-		WPILibJavaPlugin.logInfo("initialize");
+		WPILibPythonPlugin.logInfo("initialize");
 		projectsCombo.setProject(project);
 		packageText.setText(getDefaultPackage());
 	}
@@ -158,7 +158,7 @@ public class FileTemplateWizardMainPage extends WizardPage {
 			return;
 		}
 		if (!className.matches("^([a-zA-Z_]{1}[a-zA-Z0-9_]*)$")) {
-			updateStatus("Must be a valid java class name");
+			updateStatus("Must be a valid python class name");
 			return;
 		}
 		if (packageString.length() == 0) {
@@ -166,7 +166,7 @@ public class FileTemplateWizardMainPage extends WizardPage {
 			return;
 		}
 		if (!packageString.matches("^([a-zA-Z_]{1}[a-zA-Z0-9_]*(\\.[a-zA-Z_]{1}[a-zA-Z0-9_]*)*)$")) {
-			updateStatus("Must be valid java package");
+			updateStatus("Must be valid python package");
 			return;
 		}
 		updateStatus(null);
@@ -190,7 +190,7 @@ public class FileTemplateWizardMainPage extends WizardPage {
 	}
 	
 	public String getDefaultPackage() {
-		WPILibJavaPlugin.logInfo("Project: "+project);
+		WPILibPythonPlugin.logInfo("Project: "+project);
 		String defaultPackage = null;
 		if (project != null) {
 			try {
@@ -206,7 +206,7 @@ public class FileTemplateWizardMainPage extends WizardPage {
 				}
 				if (defaultPackage == null) defaultPackage = backupPackage;
 			} catch (JavaModelException e) {
-                WPILibJavaPlugin.logError("Error getting default package.", e);
+                WPILibPythonPlugin.logError("Error getting default package.", e);
 			}
 		}
 		if (defaultPackage != null) return defaultPackage;

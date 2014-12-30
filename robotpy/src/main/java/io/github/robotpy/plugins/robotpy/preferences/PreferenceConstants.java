@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.plugins.java.preferences;
+package io.github.robotpy.plugins.robotpy.preferences;
 
 /**
  * Constant definitions for plug-in preferences

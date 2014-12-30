@@ -1,9 +1,9 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.file_template;
+package io.github.robotpy.plugins.robotpy.wizards.file_template;
 
 public class TriggerWizard extends FileTemplateWizard {
 
 	public TriggerWizard() {
-		super("Trigger", "command-based/Trigger.java", "triggers");
+		super("Trigger", "command-based/trigger.py", "triggers");
 	}
 	
 }

@@ -1,9 +1,9 @@
-package edu.wpi.first.wpilib.plugins.java.wizards.file_template;
+package io.github.robotpy.plugins.robotpy.wizards.file_template;
 
 public class PIDSubsystemWizard extends FileTemplateWizard {
 
 	public PIDSubsystemWizard() {
-		super("PIDSubsystem", "command-based/PIDSubsystem.java", "subsystems");
+		super("PIDSubsystem", "command-based/pid_subsystem.py", "subsystems");
 	}
 	
 }
