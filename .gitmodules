@@ -1,0 +1,3 @@
+[submodule "robotpy-wpilib"]
+	path = robotpy-wpilib
+	url = https://github.com/robotpy/robotpy-wpilib.git
