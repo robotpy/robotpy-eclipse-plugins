@@ -121,7 +121,8 @@ public class WPILibPythonPlugin extends AbstractUIPlugin implements IStartup {
 
 	@Override
 	public void earlyStartup() {
-		new SimInstaller(getCurrentVersion()).installIfNecessary();
+		// causes errors for now
+		//new SimInstaller(getCurrentVersion()).installIfNecessary();
 	}
 
 	public static void logInfo(String msg) {

@@ -3,6 +3,9 @@ package io.github.robotpy.plugins.robotpy.wizards.newproject;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -13,14 +16,17 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.python.pydev.core.IPythonNature;
 
 import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import edu.wpi.first.wpilib.plugins.core.wizards.INewProjectInfo;
-import edu.wpi.first.wpilib.plugins.core.wizards.NewProjectMainPage;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectCreationUtils;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectType;
 import edu.wpi.first.wpilib.plugins.core.wizards.TeamNumberPage;
 import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
+import io.github.robotpy.plugins.robotpy.wizards.RobotpyCreateProjectFromWizard;
+import io.github.robotpy.plugins.robotpy.wizards.RobotpyProjectMainPage;
 
 /**
  * 
@@ -37,7 +43,7 @@ import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 
 public class NewRobotpyWizard extends Wizard implements INewWizard {
 	private TeamNumberPage teamNumberPage;
-	private NewProjectMainPage page;
+	private RobotpyProjectMainPage page;
 	private ISelection selection;
 
 	/**
@@ -53,8 +59,9 @@ public class NewRobotpyWizard extends Wizard implements INewWizard {
 	 */
 
 	public void addPages() {
-		page = new NewProjectMainPage(selection, teamNumberPage, INewProjectInfo.Null);
+		page = new RobotpyProjectMainPage(selection, teamNumberPage, INewProjectInfo.Null);
 		page.setProjectTypes(RobotpyProjectType.TYPES);
+		page.setShowPackage(false);
 		page.setTitle("Create New Robot Python Project");
 		page.setDescription("This wizard creates a new Robot Python Project configured to use WPILib for programming FRC robots.");
 		page.setShowPackage(false);
@@ -67,46 +74,18 @@ public class NewRobotpyWizard extends Wizard implements INewWizard {
 	 * using wizard as execution context.
 	 */
 	public boolean performFinish() {
-		final String projectName = page.getProjectName();
-		final String teamNumber = TeamNumberPage.getTeamNumberFromPage(teamNumberPage);
-		final String packageName = page.getPackage();
-		final ProjectType projectType = page.getProjectType();
-		final String worldName = page.getWorld();
-		WPILibPythonPlugin.logInfo("Project: "+projectName+" Package: "+packageName+" Project Type: "+projectType);
-		IRunnableWithProgress op = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) throws InvocationTargetException {
-				try {
-					doFinish(projectName, teamNumber, packageName, projectType, worldName, monitor);
-				} catch (CoreException e) {
-					throw new InvocationTargetException(e);
-				} finally {
-					monitor.done();
-				}
-			}
-		};
-		try {
-			getContainer().run(true, false, op);
-		} catch (InterruptedException e) {
-			return false;
-		} catch (InvocationTargetException e) {
-			Throwable realException = e.getTargetException();
-			MessageDialog.openError(getShell(), "Error", realException.getMessage());
-			return false;
-		}
-		return true;
-	}
-	
-	/**
-	 * The worker method. It will find the container, create the
-	 * file if missing or just replace its contents, and open
-	 * the editor on the newly created file.
-	 */
-
-	private void doFinish(String projectName, String teamNumber, String packageName, ProjectType projectType, String worldName, IProgressMonitor monitor) throws CoreException {
-    	Properties props = WPILibCore.getDefault().getProjectProperties(null);
-    	props.setProperty("team-number", teamNumber);
-    	WPILibCore.getDefault().saveGlobalProperties(props);
-		ProjectCreationUtils.createProject(new WPIRobotRobotpyProjectCreator(projectName, packageName, projectType, worldName));
+		
+		return RobotpyCreateProjectFromWizard.createProject(
+			page,
+			TeamNumberPage.getTeamNumberFromPage(teamNumberPage),
+			page.getProjectType(),
+			getContainer(),
+			getShell()
+		);
+		
+		// TODO: stuff from pydev: Switch to default perspective (will ask before changing)
+        //BasicNewProjectResourceWizard.updatePerspective(fConfigElement);
+        //BasicNewResourceWizard.selectAndReveal(createdProject, workbench.getActiveWorkbenchWindow());
 	}
 
 	/**

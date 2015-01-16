@@ -12,13 +12,14 @@ import edu.wpi.first.wpilib.plugins.core.wizards.ExampleWizard;
 import edu.wpi.first.wpilib.plugins.core.wizards.IExampleProject;
 import edu.wpi.first.wpilib.plugins.core.wizards.INewProjectInfo;
 import edu.wpi.first.wpilib.plugins.core.wizards.IExampleProject.ExportFile;
-import edu.wpi.first.wpilib.plugins.core.wizards.NewProjectMainPage;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectCreationUtils;
 import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
+import io.github.robotpy.plugins.robotpy.wizards.RobotpyCreateProjectFromWizard;
+import io.github.robotpy.plugins.robotpy.wizards.RobotpyProjectMainPage;
 import io.github.robotpy.plugins.robotpy.wizards.newproject.WPIRobotRobotpyProjectCreator;
 
 public class ExampleRobotpyWizard extends ExampleWizard {
-	private NewProjectMainPage detailsPage;
+	private RobotpyProjectMainPage detailsPage;
 
 	/**
 	 * Constructor for SampleNewWizard.
@@ -30,22 +31,21 @@ public class ExampleRobotpyWizard extends ExampleWizard {
 
 	@Override
 	protected void doFinish(IExampleProject ex, String teamNumber) throws CoreException {
-		Properties props = WPILibCore.getDefault().getProjectProperties(null);
-    	props.setProperty("team-number", teamNumber);
-    	WPILibCore.getDefault().saveGlobalProperties(props);
-    	
-		final String projectName = detailsPage.getProjectName();
-		final String packageName = detailsPage.getPackage();
-		final String worldName = detailsPage.getWorld();
-		ProjectCreationUtils.createProject(new WPIRobotRobotpyProjectCreator(projectName, packageName, ex, worldName));
+		
+		RobotpyCreateProjectFromWizard.createProject(detailsPage,
+													teamNumber,
+													ex,
+													getContainer(),
+													getShell());
 	}
 
 	@Override
 	protected IWizardPage getDetailsPage(INewProjectInfo info) {
 		if (detailsPage != null) return detailsPage;
-		detailsPage = new NewProjectMainPage(selection, getTeamNumberPage(), info);
+		detailsPage = new RobotpyProjectMainPage(selection, getTeamNumberPage(), info);
 		detailsPage.setTitle("Create Example Robot Python Project");
 		detailsPage.setDescription("This wizard creates a new example project based on your selection.");
+		detailsPage.setShowPackage(false);
 		return detailsPage;
 	}
 

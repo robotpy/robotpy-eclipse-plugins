@@ -4,23 +4,27 @@
     <extension
          point="org.eclipse.ui.newWizards">
       <category
-            name="WPILib Robot Java Development"
+            name="WPILib Robot Python Development"
             id="io.github.robotpy.plugins.robotpy">
       </category>
       <wizard
             category="io.github.robotpy.plugins.robotpy"
             class="io.github.robotpy.plugins.robotpy.wizards.newproject.NewRobotpyWizard"
-            icon="resources/icons/wpi.ico"
+            icon="resources/icons/robotpy.png"
             id="io.github.robotpy.plugins.robotpy.wizards.newproject.NewJavaWizard"
-            name="Robot Java Project"
+            name="Robot Python Project"
+            finalPerspective="org.python.pydev.ui.PythonPerspective"
+            preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             project="true">
       </wizard>
       <wizard
             category="io.github.robotpy.plugins.robotpy"
             class="io.github.robotpy.plugins.robotpy.wizards.examples.ExampleRobotpyWizard"
-            icon="resources/icons/wpi.ico"
+            icon="resources/icons/robotpy.png"
             id="io.github.robotpy.plugins.robotpy.wizards.examples.ExampleWizard"
-            name="Example Robot Java Project"
+            name="Example Robot Python Project"
+            finalPerspective="org.python.pydev.ui.PythonPerspective"
+            preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             project="true">
       </wizard>
       <wizard
@@ -28,6 +32,8 @@
             class="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandWizard"
             icon="resources/icons/Command.png"
             id="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandWizard"
+            finalPerspective="org.python.pydev.ui.PythonPerspective"
+            preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             name="Command">
       </wizard>
       <wizard
@@ -35,6 +41,8 @@
             class="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandGroupWizard"
             icon="resources/icons/CommandGroup.png"
             id="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandGroupWizard"
+            finalPerspective="org.python.pydev.ui.PythonPerspective"
+            preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             name="CommandGroup">
       </wizard>
       <wizard
@@ -42,6 +50,8 @@
             class="io.github.robotpy.plugins.robotpy.wizards.file_template.SubsystemWizard"
             icon="resources/icons/Subsystem.png"
             id="io.github.robotpy.plugins.robotpy.wizards.file_template.SubsystemWizard"
+            finalPerspective="org.python.pydev.ui.PythonPerspective"
+            preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             name="Subsytem">
       </wizard>
       <wizard
@@ -49,6 +59,8 @@
             class="io.github.robotpy.plugins.robotpy.wizards.file_template.PIDSubsystemWizard"
             icon="resources/icons/PIDSubsystem.png"
             id="io.github.robotpy.plugins.robotpy.wizards.file_template.PIDSubsystemWizard"
+            finalPerspective="org.python.pydev.ui.PythonPerspective"
+            preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             name="PIDSubsystem">
       </wizard>
       <wizard
@@ -56,6 +68,8 @@
             class="io.github.robotpy.plugins.robotpy.wizards.file_template.TriggerWizard"
             icon="resources/icons/Button.png"
             id="io.github.robotpy.plugins.robotpy.wizards.file_template.TriggerWizard"
+            finalPerspective="org.python.pydev.ui.PythonPerspective"
+            preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             name="Trigger">
       </wizard>
    </extension>

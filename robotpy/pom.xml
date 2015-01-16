@@ -28,6 +28,29 @@
       </resource>
 	</resources>
 	<plugins>
+      <!-- copy the examples to the right place, because git subtree cannot specify a destination -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/resources/templates</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>${basedir}/../robotpy-wpilib/examples</directory>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>              
+            </configuration>            
+          </execution>
+        </executions>
+      </plugin>
 	  <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>

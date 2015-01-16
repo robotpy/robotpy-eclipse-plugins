@@ -6,15 +6,20 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-Activator: io.github.robotpy.plugins.robotpy.WPILibPythonPlugin
 Bundle-Vendor: RobotPy Development Team
 Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.ide,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  edu.wpi.first.wpilib.plugins.core;bundle-version="0.1.0",
+ edu.wpi.first.wpilib.plugins.riolog;bundle-version="0.1.0",
  org.python.pydev;bundle-version="3.9.0.201411111611",
  org.python.pydev.core;bundle-version="3.9.0.201411111611"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  universal.jar,
+ pydev.jar,
+ WinRegistry-4.5.jar,
+ core.jar,
  ant-antlr.jar,
  ant-apache-bcel.jar,
  ant-apache-bsf.jar,
@@ -39,4 +44,16 @@ Bundle-ClassPath: .,
  ant.jar,
  jdi.jar,
  jdimodel.jar,
- junit.jar
+ junit.jar,
+ ast.jar,
+ parser.jar,
+ pydev-jython.jar,
+ jython.jar,
+ interactive_console.jar,
+ commons-logging-1.1.1.jar,
+ ws-commons-util-1.0.2.jar,
+ xmlrpc-client-3.1.3.jar,
+ xmlrpc-common-3.1.3.jar,
+ xmlrpc-server-3.1.3.jar,
+ shared_ui.jar,
+ shared_core.jar
