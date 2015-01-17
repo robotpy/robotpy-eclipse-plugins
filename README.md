@@ -8,12 +8,33 @@ Eclipse using WPILib components and pydev.
 This is still very much in development, please file any issues you might have
 at https://github.com/robotpy/robotpy-eclipse-plugins/issues
 
+Requirements
+============
+
+* You should have python 3.4+ installed
+* You should have the latest version of [pyfrc](http://pyfrc.readthedocs.org) installed
+* You should have Eclipse 4.x installed
+* Eclipse must be using Java 8+ (WPILib plugin requirement, sorry)
+
+
 Installation
 ============
 
-The plugins can be installed into eclipse using the following update site:
+Use the Eclipse update manager to install the plugins from our download site. It can
+usually be found at `Help -> Install New Software`. Once there, add a new plugin site
+using the 'Add' button, and use this URL:
 
     http://dl.bintray.com/robotpy/eclipse/
+
+If you did it right, it should show a few things, including 'PyDev' and 
+'RobotPy Robot Development'. You should install the RobotPy plugins and also
+the Pydev plugins.
+
+Usage
+=====
+
+TODO
+
 
 License
 =======
