@@ -7,4 +7,6 @@ upload.sh
 
 target
 
+.DS_Store
+
 robotpy/resources/templates
