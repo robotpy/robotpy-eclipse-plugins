@@ -4,7 +4,7 @@
     <extension
          point="org.eclipse.ui.newWizards">
       <category
-            name="WPILib Robot Python Development"
+            name="WPILib RobotPy Development"
             id="io.github.robotpy.plugins.robotpy">
       </category>
       <wizard
@@ -12,7 +12,7 @@
             class="io.github.robotpy.plugins.robotpy.wizards.newproject.NewRobotpyWizard"
             icon="resources/icons/robotpy.png"
             id="io.github.robotpy.plugins.robotpy.wizards.newproject.NewJavaWizard"
-            name="Robot Python Project"
+            name="RobotPy Project"
             finalPerspective="org.python.pydev.ui.PythonPerspective"
             preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             project="true">
@@ -22,7 +22,7 @@
             class="io.github.robotpy.plugins.robotpy.wizards.examples.ExampleRobotpyWizard"
             icon="resources/icons/robotpy.png"
             id="io.github.robotpy.plugins.robotpy.wizards.examples.ExampleWizard"
-            name="Example Robot Python Project"
+            name="RobotPy Example Project"
             finalPerspective="org.python.pydev.ui.PythonPerspective"
             preferredPerspectives="org.python.pydev.ui.PythonPerspective"
             project="true">
@@ -73,6 +73,45 @@
             name="Trigger">
       </wizard>
    </extension>
+   
+   <!-- various definitions we use for DRY -->
+   <extension point="org.eclipse.core.expressions.definitions">
+      <definition id="io.github.robotpy.plugins.robotpy.enablement.allow_file_wizard">
+         <and>
+	       <or>
+	          <instanceof value="org.python.pydev.navigator.elements.PythonFolder"/>
+              <instanceof value="org.python.pydev.navigator.elements.PythonSourceFolder"/>
+	          <adapt type="org.eclipse.core.resources.IProject">
+	             <test
+	                   property="org.eclipse.core.resources.projectNature"
+	                   value="org.python.pydev.pythonNature"/>
+	          </adapt>
+	       </or>
+	       <adapt type="org.eclipse.core.resources.IProject">
+              <test
+                    property="org.eclipse.core.resources.projectNature"
+                    value="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"/>
+           </adapt>
+         </and>
+      </definition>
+      <definition id="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut">
+       <with variable="selection">
+       	  <count value="1"/>
+          <iterate>
+             <and>
+                <or>
+                	<test property="org.eclipse.debug.ui.matchesPattern" value="robot.py"/>
+                	<adapt type="org.eclipse.core.resources.IProject" />
+                </or>
+                <test property="org.eclipse.debug.ui.projectNature" value="org.python.pydev.pythonNature"/>
+                <test property="org.eclipse.debug.ui.projectNature" value="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"/>
+      		    <test property="org.python.pydev.debug.ui.interpreterType" value="python"/>
+             </and>
+          </iterate>
+       </with>
+      </definition>
+   </extension>
+   
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <commonWizard
@@ -80,18 +119,7 @@
             type="new"
             wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandWizard">
          <enablement>
-      	   <with variable="selection"><iterate>
-               <and>
-                    <test
-                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                    <test
-						args="org.python.pydev.pythonNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                </and>
-           </iterate></with>
+            <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_file_wizard" />
          </enablement>
       </commonWizard>
       <commonWizard
@@ -99,18 +127,7 @@
             type="new"
             wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.CommandGroupWizard">
          <enablement>
-      	   <with variable="selection"><iterate>
-               <and>
-                    <test
-                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                    <test
-						args="org.python.pydev.pythonNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                </and>
-           </iterate></with>
+            <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_file_wizard" />
          </enablement>
       </commonWizard>
       <commonWizard
@@ -118,18 +135,7 @@
             type="new"
             wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.SubsystemWizard">
          <enablement>
-      	   <with variable="selection"><iterate>
-               <and>
-                    <test
-                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                    <test
-						args="org.python.pydev.pythonNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                </and>
-           </iterate></with>
+            <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_file_wizard" />
          </enablement>
       </commonWizard>
       <commonWizard
@@ -137,18 +143,7 @@
             type="new"
             wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.PIDSubsystemWizard">
          <enablement>
-      	   <with variable="selection"><iterate>
-               <and>
-                    <test
-                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                    <test
-						args="org.python.pydev.pythonNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                </and>
-           </iterate></with>
+            <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_file_wizard" />
          </enablement>
       </commonWizard>
       <commonWizard
@@ -156,18 +151,7 @@
             type="new"
             wizardId="io.github.robotpy.plugins.robotpy.wizards.file_template.TriggerWizard">
          <enablement>
-      	   <with variable="selection"><iterate>
-               <and>
-                    <test
-                        args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                    <test
-						args="org.python.pydev.pythonNature"
-                        property="org.eclipse.jdt.launching.hasProjectNature">
-                    </test>
-                </and>
-           </iterate></with>
+            <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_file_wizard" />
          </enablement>
       </commonWizard>
    </extension>
@@ -177,44 +161,95 @@
             class="io.github.robotpy.plugins.robotpy.preferences.PreferenceInitializer">
       </initializer>
    </extension>
-   <extension
-         point="org.eclipse.debug.ui.launchShortcuts">
+   
+   <!-- launch shortcuts -->
+   <extension point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
             class="io.github.robotpy.plugins.robotpy.launching.DeployLaunchShortcut"
-            description="Deploy the WPILib project to the roboRIO"
-            icon="resources/icons/wpi.ico"
+            description="Deploy the RobotPy project to the roboRIO"
+            icon="resources/icons/robotpy.png"
             id="io.github.robotpy.plugins.robotpy.launching.deploy"
-            label="WPILib Java Deploy"
-            modes="run,debug">
+            label="RobotPy Deploy"
+            modes="run">
             <contextualLaunch>
             <enablement>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <and>
-                        <test
-                            args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
-                            property="org.eclipse.jdt.launching.hasProjectNature">
-                        </test>
-                        <test
-                            args="org.python.pydev.pythonNature"
-                            property="org.eclipse.jdt.launching.hasProjectNature">
-                        </test>
-                     </and>
-                  </iterate>
-               </with>
-            </enablement>
+	           <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut" />
+	        </enablement>
          </contextualLaunch>
          <description
-               description="Deploy the WPILib project to the roboRIO board."
+               description="Deploy the RobotPy project to the roboRIO board."
                mode="run">
          </description>
-         <description
+         <!-- TODO <description
                description="Deploy the WPILib project to the roboRIO board and debug it."
                mode="debug">
-         </description>
+         </description> -->
       </shortcut>
       <shortcut
+            class="io.github.robotpy.plugins.robotpy.launching.DeployNoTestsLaunchShortcut"
+            description="Deploy the RobotPy project to the roboRIO without running tests (not recommended)"
+            icon="resources/icons/robotpy.png"
+            id="io.github.robotpy.plugins.robotpy.launching.deploy"
+            label="RobotPy Deploy (no tests)"
+            modes="run">
+            <contextualLaunch>
+            <enablement>
+	           <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut" />
+	        </enablement>
+         </contextualLaunch>
+         <description
+               description="Deploy the RobotPy project to the roboRIO board without running tests (not recommended)."
+               mode="run">
+         </description>
+         <!-- TODO <description
+               description="Deploy the WPILib project to the roboRIO board and debug it."
+               mode="debug">
+         </description> -->
+      </shortcut>
+      <shortcut
+            class="io.github.robotpy.plugins.robotpy.launching.PyfrcSimulateLaunchShortcut"
+            description="Runs pyfrc simulation"
+            icon="resources/icons/robotpy.png"
+            id="io.github.robotpy.plugins.robotpy.launching.deploy"
+            label="RobotPy Sim (pyfrc)"
+            modes="run">
+            <contextualLaunch>
+            <enablement>
+	           <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut" />
+	        </enablement>
+         </contextualLaunch>
+         <description
+               description="Runs pyfrc simulation"
+               mode="run">
+         </description>
+         <!-- TODO <description
+               description="Deploy the WPILib project to the roboRIO board and debug it."
+               mode="debug">
+         </description> -->
+      </shortcut>
+      <shortcut
+            class="io.github.robotpy.plugins.robotpy.launching.TestLaunchShortcut"
+            description="Runs robot unit tests using pyfrc"
+            icon="resources/icons/robotpy.png"
+            id="io.github.robotpy.plugins.robotpy.launching.deploy"
+            label="RobotPy Tests"
+            modes="run">
+            <contextualLaunch>
+            <enablement>
+	           <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut" />
+	        </enablement>
+         </contextualLaunch>
+         <description
+               description="Runs robot unit tests using pyfrc"
+               mode="run">
+         </description>
+         <!-- TODO <description
+               description="Deploy the WPILib project to the roboRIO board and debug it."
+               mode="debug">
+         </description> -->
+      </shortcut>
+      
+      <!-- <shortcut
             class="io.github.robotpy.plugins.robotpy.launching.SimulateLaunchShortcut"
             description="Test your WPILib program with the Gazebo simulator."
             icon="resources/icons/Gazebo.png"
@@ -223,22 +258,8 @@
             modes="run,debug">
             <contextualLaunch>
             <enablement>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <and>
-                        <test
-                            args="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"
-                            property="org.eclipse.jdt.launching.hasProjectNature">
-                        </test>
-                        <test
-                            args="org.python.pydev.pythonNature"
-                            property="org.eclipse.jdt.launching.hasProjectNature">
-                        </test>
-                     </and>
-                  </iterate>
-               </with>
-            </enablement>
+	           <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut" />
+	        </enablement>
          </contextualLaunch>
          <description
                description="Test your WPILib program with the Gazebo simulator."
@@ -248,7 +269,7 @@
                description="Test your WPILib program with the Gazebo simulator and use the debugger to debug."
                mode="debug">
          </description>
-      </shortcut>
+      </shortcut> -->
    </extension>
    <extension
          point="org.eclipse.ui.startup">

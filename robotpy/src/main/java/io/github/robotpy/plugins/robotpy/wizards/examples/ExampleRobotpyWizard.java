@@ -2,21 +2,17 @@ package io.github.robotpy.plugins.robotpy.wizards.examples;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.wizard.IWizardPage;
 
-import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import edu.wpi.first.wpilib.plugins.core.wizards.ExampleWizard;
 import edu.wpi.first.wpilib.plugins.core.wizards.IExampleProject;
 import edu.wpi.first.wpilib.plugins.core.wizards.INewProjectInfo;
 import edu.wpi.first.wpilib.plugins.core.wizards.IExampleProject.ExportFile;
-import edu.wpi.first.wpilib.plugins.core.wizards.ProjectCreationUtils;
 import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 import io.github.robotpy.plugins.robotpy.wizards.RobotpyCreateProjectFromWizard;
 import io.github.robotpy.plugins.robotpy.wizards.RobotpyProjectMainPage;
-import io.github.robotpy.plugins.robotpy.wizards.newproject.WPIRobotRobotpyProjectCreator;
 
 public class ExampleRobotpyWizard extends ExampleWizard {
 	private RobotpyProjectMainPage detailsPage;

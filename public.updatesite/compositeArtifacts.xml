@@ -7,6 +7,6 @@
   <children size='3'>
     <child location='http://first.wpi.edu/FRC/roborio/stable/eclipse'/>
     <child location='http://pydev.org/updates'/>
-    <child location='http://TODO'/>
+    <child location='http://dl.bintray.com/robotpy/eclipse-plugin'/>
   </children>
 </repository>

@@ -1,30 +1,14 @@
 package io.github.robotpy.plugins.robotpy.wizards.newproject;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Properties;
-
-import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
-import org.python.pydev.core.IPythonNature;
 
-import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import edu.wpi.first.wpilib.plugins.core.wizards.INewProjectInfo;
-import edu.wpi.first.wpilib.plugins.core.wizards.ProjectCreationUtils;
-import edu.wpi.first.wpilib.plugins.core.wizards.ProjectType;
 import edu.wpi.first.wpilib.plugins.core.wizards.TeamNumberPage;
-import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 import io.github.robotpy.plugins.robotpy.wizards.RobotpyCreateProjectFromWizard;
 import io.github.robotpy.plugins.robotpy.wizards.RobotpyProjectMainPage;
 

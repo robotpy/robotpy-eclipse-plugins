@@ -27,7 +27,8 @@ public class RobotpyProjectType implements ProjectType {
 			String[] paths = {"src",
 					"src/commands",
 					"src/subsystems",
-					"src/triggers"};
+					"src/triggers",
+					"tests"};
 			return paths;
 		}
 		@Override public Map<String, String> getFiles(String packageName) {
@@ -49,14 +50,15 @@ public class RobotpyProjectType implements ProjectType {
 
 	@Override
 	public String[] getFolders(String packageName) {
-		String[] paths = {"src/"+packageName.replace(".", "/")};
+		String[] paths = {"src/", "tests/"};
 		return paths;
 	}
 
 	@Override
 	public Map<String, String> getFiles(String packageName) {
 		HashMap<String, String> files = new HashMap<String, String>();
-		// by default, we don't have extra files
+		// add the pyfrc tests to everything
+		files.put("tests/pyfrc_test.py", "pyfrc_tests/pyfrc_test.py");
 		return files;
 	}
 

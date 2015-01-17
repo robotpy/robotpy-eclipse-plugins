@@ -7,17 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.IPackageFragment;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -109,7 +104,7 @@ public class FileTemplateWizard extends Wizard implements INewWizard {
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.selection = selection;
+		/*this.selection = selection;
 		WPILibPythonPlugin.logInfo(selection.toString());
 		Object element = ((StructuredSelection) selection).getFirstElement();
 		if (element != null) WPILibPythonPlugin.logInfo(element.getClass().toString());
@@ -121,6 +116,6 @@ public class FileTemplateWizard extends Wizard implements INewWizard {
 			project = ((IPackageFragmentRoot) element).getJavaProject().getProject();
 		} else if (element instanceof ICompilationUnit) {
 			project = ((ICompilationUnit) element).getJavaProject().getProject();
-		} else WPILibPythonPlugin.logInfo("Element not instance of IResource");
+		} else WPILibPythonPlugin.logInfo("Element not instance of IResource");*/
 	}
 }

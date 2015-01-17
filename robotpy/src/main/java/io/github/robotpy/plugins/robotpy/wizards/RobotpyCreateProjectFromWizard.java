@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import edu.wpi.first.wpilib.plugins.core.WPILibCore;
-import edu.wpi.first.wpilib.plugins.core.wizards.IProjectCreator;
 import edu.wpi.first.wpilib.plugins.core.wizards.ProjectType;
 
 public class RobotpyCreateProjectFromWizard {

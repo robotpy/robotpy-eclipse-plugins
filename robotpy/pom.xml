@@ -51,12 +51,13 @@
           </execution>
         </executions>
       </plugin>
+    <!--
 	  <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>2.8</version>
         <executions>
-            <!-- Simulation -->
+            - Simulation -
             <execution>
               <id>fetch-sim-jar-zip-dependencies</id>
               <phase>compile</phase>
@@ -103,7 +104,7 @@
 		<version>1.7</version>
 		<executions>
 		  
-		  <!-- Set time stamp and version properties. -->
+		  - Set time stamp and version properties. -
 		  <execution>
 			<id>set-version-info</id>
 			<goals>
@@ -124,7 +125,7 @@
 			</configuration>
 		  </execution>
 
-		  <!-- Unzip jinput *.so's -->
+		  - Unzip jinput *.so's -
 		  <execution>
 			<id>unzip-jinput-libs</id>
             <phase>compile</phase>
@@ -143,7 +144,7 @@
 			</configuration>
 		  </execution>
           
-		  <!-- Generate zip file to unzip for the user. -->
+		  - Generate zip file to unzip for the user. -
 		  <execution>
 			<id>generate-jar-zip</id>
             <phase>compile</phase>
@@ -159,7 +160,7 @@
 			</configuration>
 		  </execution>
 		</executions>
-	  </plugin>
+	  </plugin> -->
     </plugins>
 	<pluginManagement>
 		<plugins>

@@ -1,7 +1,6 @@
 package io.github.robotpy.plugins.robotpy;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IProject;
@@ -9,17 +8,14 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.ui.IStartup;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import edu.wpi.first.wpilib.plugins.core.ant.AntPropertiesParser;
-import io.github.robotpy.plugins.robotpy.installer.SimInstaller;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -132,4 +128,11 @@ public class WPILibPythonPlugin extends AbstractUIPlugin implements IStartup {
 	public static void logError(String msg, Exception e) {
 		getDefault().getLog().log(new Status(Status.ERROR, PLUGIN_ID, Status.OK, msg, e));
 	}
+	
+	/**
+     * Returns the active workbench window or <code>null</code> if none
+     */
+    public static IWorkbenchWindow getActiveWorkbenchWindow() {
+        return getDefault().getWorkbench().getActiveWorkbenchWindow();
+    }
 }

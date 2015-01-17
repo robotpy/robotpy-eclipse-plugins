@@ -37,16 +37,7 @@ public class ExampleRobotpyProject extends RobotpyProjectType implements IExampl
 	public String getWorld() {
 		return world;
 	}
-
-	@Override
-	public String[] getFolders(String packageName) {
-		String packageDir = packageName.replace(".", "/");
-		for (int i = 0; i < packages.size(); i++) {
-			packages.set(i, packages.get(i).replaceAll("\\$package-dir", packageDir));
-		}
-		return packages.toArray(new String[0]);
-	}
-
+	
 	@Override
 	public Map<String, String> getFiles(String packageName) {
 		String packageDir = packageName.replace(".", "/");

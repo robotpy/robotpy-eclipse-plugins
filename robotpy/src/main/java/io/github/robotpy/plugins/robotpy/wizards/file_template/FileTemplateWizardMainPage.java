@@ -2,10 +2,6 @@ package io.github.robotpy.plugins.robotpy.wizards.file_template;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.dialogs.IDialogPage;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -19,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.python.pydev.plugin.nature.PythonNature;
 
 import edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature;
 import edu.wpi.first.wpilib.plugins.core.wizards.IProjectFilter;
@@ -69,9 +66,9 @@ public class FileTemplateWizardMainPage extends WizardPage {
 					@Override public boolean accept(IProject project) {
 						try {
 							return project.hasNature(FRCProjectNature.FRC_PROJECT_NATURE)
-									&& project.hasNature(JavaCore.NATURE_ID);
+									&& project.hasNature(PythonNature.PYTHON_NATURE_ID);
 						} catch (CoreException e) {
-                            WPILibPythonPlugin.logError("Error looking for FRCJava project.", e);
+                            WPILibPythonPlugin.logError("Error looking for project.", e);
 							return false;
 						}
 					}
@@ -190,26 +187,6 @@ public class FileTemplateWizardMainPage extends WizardPage {
 	}
 	
 	public String getDefaultPackage() {
-		WPILibPythonPlugin.logInfo("Project: "+project);
-		String defaultPackage = null;
-		if (project != null) {
-			try {
-				IPackageFragmentRoot root = JavaCore.create(project)
-						.getPackageFragmentRoot(project.getFolder("src"));
-				String backupPackage = "";
-				for (IJavaElement child : root.getChildren()) {
-					if (child.getElementType()==IJavaElement.PACKAGE_FRAGMENT
-							&& child.getElementName().endsWith("."+ending)) {
-						defaultPackage = child.getElementName();
-					}
-					backupPackage =  child.getElementName();
-				}
-				if (defaultPackage == null) defaultPackage = backupPackage;
-			} catch (JavaModelException e) {
-                WPILibPythonPlugin.logError("Error getting default package.", e);
-			}
-		}
-		if (defaultPackage != null) return defaultPackage;
-		else return "";
+		return "";
 	}
 }
