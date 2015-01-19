@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.robotpy.plugins</groupId>
   <artifactId>io.github.robotpy.plugins</artifactId>
-  <version>2015.0.3</version>
+  <version>2015.0.4</version>
   <packaging>pom</packaging>
 
   <modules>
