@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: io.github.robotpy.plugins.robotpy
 Bundle-SymbolicName: io.github.robotpy.plugins.robotpy;singleton:=true
-Bundle-Version: 2015.0.1
+Bundle-Version: 2015.0.2
 Bundle-Activator: io.github.robotpy.plugins.robotpy.WPILibPythonPlugin
 Bundle-Vendor: RobotPy Development Team
 Require-Bundle: org.eclipse.ui,
