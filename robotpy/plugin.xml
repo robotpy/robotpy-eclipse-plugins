@@ -100,11 +100,16 @@
           <iterate>
              <and>
                 <or>
-                	<test property="org.eclipse.debug.ui.matchesPattern" value="robot.py"/>
-                	<adapt type="org.eclipse.core.resources.IProject" />
+                    <and>
+                        <test property="org.eclipse.debug.ui.matchesPattern" value="robot.py"/>
+                        <test property="org.eclipse.debug.ui.projectNature" value="org.python.pydev.pythonNature"/>
+                    </and>
+                    <and>
+                        <adapt type="org.eclipse.core.resources.IProject" />
+                        <test property="org.eclipse.debug.ui.projectNature" value="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"/>
+                        <test property="org.eclipse.debug.ui.projectNature" value="org.python.pydev.pythonNature"/>
+                    </and>
                 </or>
-                <test property="org.eclipse.debug.ui.projectNature" value="org.python.pydev.pythonNature"/>
-                <test property="org.eclipse.debug.ui.projectNature" value="edu.wpi.first.wpilib.plugins.core.nature.FRCProjectNature"/>
       		    <test property="org.python.pydev.debug.ui.interpreterType" value="python"/>
              </and>
           </iterate>
