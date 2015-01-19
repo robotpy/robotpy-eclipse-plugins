@@ -3,7 +3,7 @@
       id="io.github.robotpy.plugins.robotpy.feature"
       label="Robot Python Development"
       version="0.1.0.qualifier"
-      provider-name="Worcester Polytechnic Institute">
+      provider-name="RobotPy Development Team">
 
    <description>
       RobotPy Development Tools for Eclipse
