@@ -217,7 +217,7 @@
             icon="resources/icons/robotpy.png"
             id="io.github.robotpy.plugins.robotpy.launching.deploy"
             label="RobotPy Sim (pyfrc)"
-            modes="run">
+            modes="run, debug">
             <contextualLaunch>
             <enablement>
 	           <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut" />
@@ -238,7 +238,7 @@
             icon="resources/icons/robotpy.png"
             id="io.github.robotpy.plugins.robotpy.launching.deploy"
             label="RobotPy Tests"
-            modes="run">
+            modes="run, debug">
             <contextualLaunch>
             <enablement>
 	           <reference definitionId="io.github.robotpy.plugins.robotpy.enablement.allow_launch_shortcut" />
