@@ -2,7 +2,7 @@
 <feature
       id="io.github.robotpy.plugins.robotpy.feature"
       label="Robot Python Development"
-      version="0.1.0.qualifier"
+      version="2015.0.0"
       provider-name="RobotPy Development Team">
 
    <description>

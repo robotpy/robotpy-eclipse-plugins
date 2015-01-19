@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/io.github.robotpy.plugins.robotpy.feature_0.1.0.qualifier.jar" id="io.github.robotpy.plugins.robotpy.feature" version="0.1.0.qualifier">
+   <feature url="features/io.github.robotpy.plugins.robotpy.feature_2015.0.0.jar" id="io.github.robotpy.plugins.robotpy.feature" version="2015.0.0">
       <category name="io.github.robotpy.plugins"/>
    </feature>
    <category-def name="io.github.robotpy.plugins" label="RobotPy Robot Development">

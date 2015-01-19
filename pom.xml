@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.robotpy.plugins</groupId>
   <artifactId>io.github.robotpy.plugins</artifactId>
-  <version>0.1.0.qualifier</version>
+  <version>2015.0.0</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -14,7 +14,7 @@
   </modules>
   
   <properties>
-    <tycho-version>0.21.0</tycho-version>
+    <tycho-version>0.22.0</tycho-version>
   </properties>
 
   <repositories>
@@ -46,6 +46,11 @@
         <artifactId>tycho-maven-plugin</artifactId>
         <version>${tycho-version}</version>
         <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-versions-plugin</artifactId>
+        <version>${tycho-version}</version>
       </plugin>
     </plugins>
   </build>
@@ -84,18 +89,6 @@
       <activation>
 	<jdk>[1.8,</jdk>
       </activation>
-
-      <build>
-	<plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-              <additionalparam>-Xdoclint:none</additionalparam>
-            </configuration>
-          </plugin>
-	</plugins>
-      </build>
     </profile>
 
   </profiles>
