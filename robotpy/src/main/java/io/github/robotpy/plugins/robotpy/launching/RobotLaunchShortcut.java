@@ -1,14 +1,19 @@
 package io.github.robotpy.plugins.robotpy.launching;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.DebugUITools;
@@ -22,6 +27,7 @@ import org.python.pydev.debug.core.Constants;
 import org.python.pydev.debug.ui.launching.FileOrResource;
 import org.python.pydev.debug.ui.launching.LaunchShortcut;
 import org.python.pydev.editor.PyEdit;
+import org.python.pydev.shared_core.io.FileUtils;
 
 import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
@@ -105,7 +111,15 @@ public abstract class RobotLaunchShortcut implements ILaunchShortcut {
 		pydevLauncher.fileNotFound();
 	}
 	
-	
+	// from pydev
+	private String getAbsPath(File f)
+	{
+		try {
+			return f.getCanonicalPath(); 
+		} catch (IOException e) {
+			return f.getAbsolutePath();
+		}
+	}
 	
 	/**
 	 * Runs the ant script using the correct target for the indicated mode (deploy to cRIO or just compile)
@@ -120,9 +134,21 @@ public abstract class RobotLaunchShortcut implements ILaunchShortcut {
 			ILaunchConfiguration conf = pydevLauncher.createDefaultLaunchConfigurationWithoutSaving(new FileOrResource[] { resource });
 			
 			workingCopy = conf.getWorkingCopy();
-			workingCopy.setAttribute(Constants.ATTR_PROGRAM_ARGUMENTS, getArgs());
 			
-		} catch (CoreException e) {
+			// We have to pass the right args to robot.py AND we need to run our preexec
+			// python script to make sure the environment is ok, so we can warn the user
+			// -> pydev uses sitecustomize.py, but this seems easier.. 
+			
+			String args = "\"" + workingCopy.getAttribute(Constants.ATTR_LOCATION, "") + "\" " + getArgs();
+			workingCopy.setAttribute(Constants.ATTR_PROGRAM_ARGUMENTS, args);
+			
+			// set to our preexec
+			URL url = new URL(WPILibPythonPlugin.getDefault().getBundle().getEntry("/resources/py/"), "preexec.py");
+			File file = URIUtil.toFile(FileLocator.toFileURL(url).toURI());
+			
+			workingCopy.setAttribute(Constants.ATTR_LOCATION, getAbsPath(file));
+			
+		} catch (CoreException|IOException|URISyntaxException e) {
 			RobotLaunchShortcut.reportError(null, e);
 			return;
 		}
