@@ -6,6 +6,7 @@
 
 import marshal
 import sys
+import os.path
 import tokenize
 import traceback
 import types
@@ -82,6 +83,9 @@ def preexec_main():
     # Finally run the thing
     filename = sys.argv[1]
     args = [filename] + list(sys.argv[2:])
+    
+    # Fix up sys.path before we run it though
+    sys.path[0] = os.path.abspath(os.path.dirname(filename))
     
     run_python_file(filename, args)
     
