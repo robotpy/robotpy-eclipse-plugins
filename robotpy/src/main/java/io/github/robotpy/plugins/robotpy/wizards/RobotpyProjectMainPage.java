@@ -7,6 +7,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -73,6 +74,26 @@ public class RobotpyProjectMainPage extends NewProjectMainPage {
         GridData data = new GridData(GridData.FILL_HORIZONTAL);
         data.grabExcessHorizontalSpace = true;
         createdOn.setLayoutData(data);
+        
+        // hackery: try to find the grammar combo box and set it properly
+        try {
+        	Composite pyControl = (Composite)createdOn;
+        	
+        	for (Control ctrl: pyControl.getChildren()) {
+        		if (!(ctrl instanceof Combo))
+        			continue;
+        		
+        		Combo cb = (Combo)ctrl; 
+        		if (cb.getText().equals(IPythonNature.Versions.LAST_VERSION_NUMBER)) {
+        			// found it! Set it and run
+        			cb.setText("3.0");
+        			break;
+        		}
+        	}
+        	
+        } catch (Exception e) {
+        	// well. that sucks. Ignore the error, this doesn't really matter.
+        }
     }
 	
     

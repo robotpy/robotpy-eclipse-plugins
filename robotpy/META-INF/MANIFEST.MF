@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.python.pydev.core;bundle-version="3.9.0.201411111611",
  org.python.pydev.debug;bundle-version="3.9.0.201411111611",
  org.eclipse.ui.workbench,
- org.eclipse.debug.core
+ org.eclipse.debug.core,
+ org.eclipse.swt
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
