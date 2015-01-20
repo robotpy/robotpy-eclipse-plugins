@@ -27,7 +27,6 @@ import org.python.pydev.debug.core.Constants;
 import org.python.pydev.debug.ui.launching.FileOrResource;
 import org.python.pydev.debug.ui.launching.LaunchShortcut;
 import org.python.pydev.editor.PyEdit;
-import org.python.pydev.shared_core.io.FileUtils;
 
 import edu.wpi.first.wpilib.plugins.core.WPILibCore;
 import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;

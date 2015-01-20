@@ -30,7 +30,6 @@ import io.github.robotpy.plugins.robotpy.WPILibPythonPlugin;
 
 public class FileTemplateWizardMainPage extends WizardPage {
 	private IProject project;
-	private String ending;
 	private ProjectComboField projectsCombo;
 	private Text classNameText;
 	private Text packageText;
@@ -45,7 +44,6 @@ public class FileTemplateWizardMainPage extends WizardPage {
 		setTitle("Create New "+type);
 		setDescription("This wizard creates a new "+type.toLowerCase()+" from a template.");
 		this.project = project;
-		this.ending = ending;
 	}
 
 	/**

@@ -9,7 +9,6 @@ import io.github.robotpy.plugins.robotpy.wizards.newproject.RobotpyProjectType;
 public class ExampleRobotpyProject extends RobotpyProjectType implements IExampleProject {
 	private String name, description, world;
 	private List<String> tags;
-	private List<String> packages;
 	private List<ExportFile> files;
 	
 	public ExampleRobotpyProject(String name, String description, List<String> tags, 
@@ -18,7 +17,6 @@ public class ExampleRobotpyProject extends RobotpyProjectType implements IExampl
 		this.description = description;
 		this.tags = tags;
 		this.world = world;
-		this.packages = packages;
 		this.files = files;
 	}
 
