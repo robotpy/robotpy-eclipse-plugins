@@ -8,7 +8,7 @@
   <parent>
     <groupId>io.github.robotpy.plugins</groupId>
     <artifactId>io.github.robotpy.plugins</artifactId>
-    <version>2015.0.5</version>
+    <version>2015.0.6</version>
     <relativePath>..</relativePath>
   </parent>
 </project>
