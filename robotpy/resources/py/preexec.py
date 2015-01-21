@@ -16,9 +16,9 @@ from distutils.version import LooseVersion
 is_windows = hasattr(sys, 'getwindowsversion')
 
 # setup minimum requirements here 
-PYFRC_MIN_VERSION = LooseVersion("2015.1.1")
-WPILIB_MIN_VERSION = LooseVersion("2015.0.5")
-NETWORKTABLES_MIN_VERSION = LooseVersion("2015.0.5")
+PYFRC_MIN_VERSION = LooseVersion("2015.1.3")
+WPILIB_MIN_VERSION = LooseVersion("2015.0.6")
+NETWORKTABLES_MIN_VERSION = LooseVersion("2015.0.6")
 
 if is_windows:
     PIP_CMD = "py -3 -m pip"
