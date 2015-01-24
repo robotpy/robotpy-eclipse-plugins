@@ -16,7 +16,7 @@ from distutils.version import LooseVersion
 is_windows = hasattr(sys, 'getwindowsversion')
 
 # setup minimum requirements here 
-PYFRC_MIN_VERSION = LooseVersion("2015.1.3")
+PYFRC_MIN_VERSION = LooseVersion("2015.2.0")
 WPILIB_MIN_VERSION = LooseVersion("2015.0.6")
 NETWORKTABLES_MIN_VERSION = LooseVersion("2015.0.6")
 
