@@ -75,10 +75,18 @@ def preexec_main():
     version_check('pyfrc', PYFRC_MIN_VERSION, pyfrc.__version__, 'pyfrc')
     
     # delete all the modules
-    del sys.modules['wpilib']
-    del sys.modules['pyfrc']
-    del sys.modules['networktables']
+    mods_to_delete = []
 
+    for k, v in sys.modules.items():
+        if k in ['wpilib', 'pyfrc', 'networktables'] or \
+           k.startswith('wpilib.') or \
+           k.startswith('pyfrc.') or \
+           k.startswith('networktables.'):
+
+           mods_to_delete.append(k)
+
+    for k in mods_to_delete:
+        del sys.modules[k]
 
     # Finally run the thing
     filename = sys.argv[1]
