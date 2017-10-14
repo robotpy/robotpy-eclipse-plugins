@@ -17,7 +17,7 @@ is_windows = hasattr(sys, 'getwindowsversion')
 
 # setup minimum requirements here 
 PYFRC_MIN_VERSION = LooseVersion("2017.1.5")
-WPILIB_MIN_VERSION = LooseVersion("2017.3.1")
+WPILIB_MIN_VERSION = LooseVersion("2017.1.2")
 NETWORKTABLES_MIN_VERSION = LooseVersion("2017.0.8")
 
 if is_windows:
