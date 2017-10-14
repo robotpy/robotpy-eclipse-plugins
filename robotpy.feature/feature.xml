@@ -2,7 +2,7 @@
 <feature
       id="io.github.robotpy.plugins.robotpy.feature"
       label="Robot Python Development"
-      version="2017.1.0"
+      version="2017.1.2"
       provider-name="RobotPy Development Team">
 
    <description>
@@ -104,7 +104,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </license>
 
    <requires>
-      <import feature="org.python.pydev.feature" version="6.0.0.201709191431" match="greaterOrEqual"/>
+      <import feature="org.python.pydev.feature" version="6" match="greaterOrEqual"/>
    </requires>
 
    <plugin
