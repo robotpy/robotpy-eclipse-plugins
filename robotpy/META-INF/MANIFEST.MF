@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: io.github.robotpy.plugins.robotpy
 Bundle-SymbolicName: io.github.robotpy.plugins.robotpy;singleton:=true
-Bundle-Version: 2015.0.8
+Bundle-Version: 2017.1.0
 Bundle-Activator: io.github.robotpy.plugins.robotpy.WPILibPythonPlugin
 Bundle-Vendor: RobotPy Development Team
 Require-Bundle: org.eclipse.ui,
@@ -11,11 +11,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.debug.ui,
- edu.wpi.first.wpilib.plugins.core;bundle-version="0.1.0",
- edu.wpi.first.wpilib.plugins.riolog;bundle-version="0.1.0",
- org.python.pydev;bundle-version="3.9.0.201411111611",
- org.python.pydev.core;bundle-version="3.9.0.201411111611",
- org.python.pydev.debug;bundle-version="3.9.0.201411111611",
+ edu.wpi.first.wpilib.plugins.java;bundle-version="2017.3.1",
+ edu.wpi.first.wpilib.plugins.cpp;bundle-version="2017.3.1",
+ edu.wpi.first.wpilib.plugins.core;bundle-version="2017.3.1",
+ edu.wpi.first.wpilib.plugins.riolog;bundle-version="2017.3.1",
+ org.python.pydev;bundle-version="6.0.0.201709191431",
+ org.python.pydev.core;bundle-version="6.0.0.201709191431",
+ org.python.pydev.debug;bundle-version="6.0.0.201709191431",
  org.eclipse.ui.workbench,
  org.eclipse.debug.core,
  org.eclipse.swt
