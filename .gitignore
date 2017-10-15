@@ -11,3 +11,5 @@ target
 .DS_Store
 
 robotpy/resources/templates
+.pydevproject.bak
+.settings/org.eclipse.core.resources.prefs

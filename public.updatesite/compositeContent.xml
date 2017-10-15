@@ -5,7 +5,7 @@
     <property name='p2.timestamp' value='1323486257489'/>
   </properties>
   <children size='3'>
-    <child location='http://first.wpi.edu/FRC/roborio/stable/eclipse'/>
+    <child location='http://first.wpi.edu/FRC/roborio/release/eclipse'/>
     <child location='http://pydev.org/updates'/>
     <child location='http://dl.bintray.com/robotpy/eclipse-plugin'/>
   </children>
