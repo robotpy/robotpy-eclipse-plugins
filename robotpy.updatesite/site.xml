@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/io.github.robotpy.plugins.robotpy.feature_2015.0.8.jar" id="io.github.robotpy.plugins.robotpy.feature" version="2015.0.8">
+   <feature url="features/io.github.robotpy.plugins.robotpy.feature_2017.1.2.jar" id="io.github.robotpy.plugins.robotpy.feature" version="2017.1.2">
       <category name="edu.wpi.first.wpilib.plugins"/>
    </feature>
    <category-def name="edu.wpi.first.wpilib.plugins" label="WPILib Robot Development">
