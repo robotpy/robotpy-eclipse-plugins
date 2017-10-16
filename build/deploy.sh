@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname $0)"
+cd "$(dirname $0)"/..
 
 if [ ! -f pushToBintray.sh ]; then 
     wget https://raw.githubusercontent.com/robotpy/bintray-publish-p2-updatesite/master/pushToBintray.sh
