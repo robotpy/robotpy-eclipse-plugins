@@ -31,3 +31,5 @@ I'm deploying these to bintray, so I chose to use the script at
 https://github.com/vogellacompany/bintray-publish-p2-updatesite for uploading
 artifacts to bintray.
 
+Now I have it set up such that when a tag is pushed, travis-ci will
+automatically push a new build to bintray.

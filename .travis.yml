@@ -1,0 +1,14 @@
+language: java
+sudo: false
+deploy:
+  provider: script
+  script: build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET
+  on:
+    tags: true
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/2fb1c026e64fdd70d27b
+    on_success: change
+    on_failure: always
+    on_start: never
