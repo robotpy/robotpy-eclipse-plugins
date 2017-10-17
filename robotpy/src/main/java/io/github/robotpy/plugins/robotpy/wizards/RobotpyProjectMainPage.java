@@ -76,7 +76,7 @@ public class RobotpyProjectMainPage extends NewProjectMainPage {
         createdOn.setLayoutData(data);
         
         // hackery: try to find the grammar combo box and set it properly
-        try {
+        /*try {
         	Composite pyControl = (Composite)createdOn;
         	
         	for (Control ctrl: pyControl.getChildren()) {
@@ -93,7 +93,7 @@ public class RobotpyProjectMainPage extends NewProjectMainPage {
         	
         } catch (Exception e) {
         	// well. that sucks. Ignore the error, this doesn't really matter.
-        }
+        }*/
     }
 	
     
