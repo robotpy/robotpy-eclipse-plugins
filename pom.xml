@@ -9,11 +9,8 @@
 
   <modules>
     <module>robotpy</module>
-    
-    <module>robotpy.updatesite</module>
-    
-    
     <module>robotpy.feature</module>
+    <module>robotpy.updatesite</module>
   </modules>
   
   <properties>
