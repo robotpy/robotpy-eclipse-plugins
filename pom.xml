@@ -9,12 +9,15 @@
 
   <modules>
     <module>robotpy</module>
-    <module>robotpy.feature</module>
+    
     <module>robotpy.updatesite</module>
+    
+    
+    <module>robotpy.feature</module>
   </modules>
   
   <properties>
-    <tycho-version>0.22.0</tycho-version>
+    <tycho-version>1.0.0</tycho-version>
   </properties>
 
   <repositories>
