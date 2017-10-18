@@ -5,6 +5,9 @@ deploy:
   script: build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET
   on:
     tags: true
+cache:
+  directories:
+  - $HOME/.m2
 notifications:
   webhooks:
     urls:
