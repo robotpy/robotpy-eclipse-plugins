@@ -89,6 +89,16 @@ the netconsole output of your robot program when it's running on your robot.
 
 For more information about RIOLog, see the [WPILib Control System docs](http://wpilib.screenstepslive.com/s/4485/m/13810/l/284333-using-riolog-to-view-console-output).
 
+Dev Testing
+===========
+
+In order to build and test a development build of the source code, follow the steps below:
+1.) Uninstall previous versions of the RobotPy plugin by going to Window > Install new Software > What is already installed? and uninstalling the appropriate plugin.
+2.) Run "mvn install" inside of the main directory for the repository: robotpy-eclipse-plugins.
+3.) Install the plugin by going to Window > Install new Software > Add > Local and chosing the local directory as "YOURLOCATION/robotpy-eclipse-plugins/robotpy.updatesite/target/site"
+4.) Restart Eclipse and you are ready to go.
+
+To remove old build files, run "mvn clean" in robotpy-eclipse-plugins.
 
 License
 =======
