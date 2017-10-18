@@ -3,6 +3,7 @@ sudo: false
 deploy:
   provider: script
   script: build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET
+  skip_cleanup: true
   on:
     tags: true
 cache:
