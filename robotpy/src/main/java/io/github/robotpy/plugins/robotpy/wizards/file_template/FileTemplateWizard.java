@@ -89,7 +89,7 @@ public class FileTemplateWizard extends Wizard implements INewWizard {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("$classname", className);
 		map.put("$package", packageName);
-		String filepath = "src/"+packageName.replace(".", "/")+"/"+className+".java";
+		String filepath = "src/"+packageName.replace(".", "/")+"/"+className+".py";
 		try {
 			URL url = new URL(WPILibPythonPlugin.getDefault().getBundle().getEntry("/resources/templates/"), source);
 			ProjectCreationUtils.createTemplateFile(project, filepath, url, map);
