@@ -2,7 +2,9 @@ language: java
 sudo: false
 deploy:
   provider: script
-  script: build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET $TRAVIS_TAG
+  script:
+  - build/update_version.py $TRAVIS_TAG
+  - build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET $TRAVIS_TAG
   skip_cleanup: true
   on:
     tags: true
