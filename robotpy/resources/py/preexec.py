@@ -15,10 +15,10 @@ from distutils.version import LooseVersion
 
 is_windows = hasattr(sys, 'getwindowsversion')
 
-# setup minimum requirements here 
-PYFRC_MIN_VERSION = LooseVersion("2017.1.5")
-WPILIB_MIN_VERSION = LooseVersion("2017.1.2")
-NETWORKTABLES_MIN_VERSION = LooseVersion("2017.0.8")
+# setup minimum requirements here
+PYFRC_MIN_VERSION = LooseVersion("2018.0.9")
+WPILIB_MIN_VERSION = LooseVersion("2018.0.11")
+NETWORKTABLES_MIN_VERSION = LooseVersion("2018.0.1")
 
 if is_windows:
     PIP_CMD = "py -3 -m pip"
@@ -46,14 +46,14 @@ def version_check(name, need, has, pkg):
 def preexec_main():
     
     if sys.version_info[0] < 3 or \
-       sys.version_info[1] < 4:
-        err("Your interpreter isn't set up properly for python 3.4.x (RobotPy requires python 3.4.x)\n" + 
+       sys.version_info[1] < 5:
+        err("Your interpreter isn't set up properly for python 3.5.x (RobotPy requires python 3.5.x)\n" +
             "-> Found python %s" % sys.version)
     
     try:
         import wpilib
     except ImportError:
-        err("The 'wpilib' module could not be imported -- did you install pyfrc?\n" + 
+        err("The 'wpilib' module could not be imported -- did you install pyfrc?\n" +
             "-> See http://pyfrc.readthedocs.org/en/latest/install.html")
     
     version_check('wpilib', WPILIB_MIN_VERSION, wpilib.__version__, 'pyfrc')
@@ -61,7 +61,7 @@ def preexec_main():
     try:
         import networktables
     except ImportError:
-        err("The 'networktables' module could not be imported -- did you install pyfrc?\n" + 
+        err("The 'networktables' module could not be imported -- did you install pyfrc?\n" +
             "-> See http://pyfrc.readthedocs.org/en/latest/install.html")
     
     version_check('pynetworktables', NETWORKTABLES_MIN_VERSION, networktables.__version__, 'pynetworktables')
@@ -69,7 +69,7 @@ def preexec_main():
     try:
         import pyfrc
     except ImportError:
-        err("The 'pyfrc' module could not be imported -- did you install pyfrc?\n" + 
+        err("The 'pyfrc' module could not be imported -- did you install pyfrc?\n" +
             "-> See http://pyfrc.readthedocs.org/en/latest/install.html")
     
     version_check('pyfrc', PYFRC_MIN_VERSION, pyfrc.__version__, 'pyfrc')
@@ -215,4 +215,3 @@ def read_python_source(filename):
 
 if __name__ == '__main__':
     preexec_main()
-
