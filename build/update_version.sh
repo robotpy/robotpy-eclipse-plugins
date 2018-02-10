@@ -7,5 +7,5 @@ if [ "$1" == "" ]; then
     exit 1
 fi
 
-mvn tycho-versions:set-version -Dtycho.localArtifacts=ignore -DnewVersion=$1
-mvn tycho-versions:update-pom -Dtycho.localArtifacts=ignore
+mvn -B tycho-versions:set-version -Dtycho.localArtifacts=ignore -DnewVersion=$1
+mvn -B tycho-versions:update-pom -Dtycho.localArtifacts=ignore

@@ -1,14 +1,19 @@
 language: java
 sudo: false
+script:
+  - build/update_version.sh $(git describe --tags)
+  - mvn test -B
 deploy:
   provider: script
-  script: build/update_version.py $TRAVIS_TAG && build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET $TRAVIS_TAG
+  script: build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET $TRAVIS_TAG
   skip_cleanup: true
   on:
     tags: true
 cache:
   directories:
   - $HOME/.m2
+before_cache:
+  - rm -rf $HOME/.m2/repository/io/github/robotpy/plugins
 notifications:
   webhooks:
     urls:
