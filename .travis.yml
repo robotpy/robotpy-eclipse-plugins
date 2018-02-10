@@ -1,8 +1,6 @@
 language: java
 sudo: false
-script:
-  - build/update_version.sh $(git describe --tags)
-  - mvn test -B
+before_install: build/update_version.sh $(git describe --tags)
 deploy:
   provider: script
   script: build/deploy.sh $DEPLOY_USERNAME $DEPLOY_SECRET $TRAVIS_TAG
