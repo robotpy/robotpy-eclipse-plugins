@@ -1,3 +1,5 @@
+**THIS REPOSITORY IS NO LONGER MAINTAINED**: Check out the RobotPy vscode plugin instead: https://github.com/robotpy/vscode-wpilib-python
+
 RobotPy Eclipse Plugins
 =======================
 
